@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { ShopProductDto } from './dto/shop-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -36,9 +36,13 @@ export class ShopService {
   }
 
   async getShopById(shopId: number) {
-    return this.shopRepository.findOne({
+    const shop = await this.shopRepository.findOne({
       where: { id: shopId },
       relations: ['products'],
     });
+    if (!shop) {
+      throw new NotFoundException('No such shop');
+    }
+    return shop;
   }
 }

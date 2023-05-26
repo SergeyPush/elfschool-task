@@ -1,7 +1,14 @@
-import { IsNumber, IsString, ValidateNested } from 'class-validator';
+import {
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
-class ProductDto {
+export class ProductDto {
+  @IsOptional()
+  id?: number;
   @IsString()
   name: string;
   @IsString()
