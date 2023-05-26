@@ -1,8 +1,13 @@
-import { IsEmail, IsNumber, IsString, ValidateNested } from 'class-validator';
-import { ProductDto } from '../../shop/dto/shop-product.dto';
+import {
+  IsEmail,
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
-export class UserDto {
+class UserDto {
   @IsString()
   name: string;
   @IsEmail()
@@ -13,6 +18,21 @@ export class UserDto {
   phone: string;
 }
 
+class CreateProductDto {
+  @IsOptional()
+  id?: number;
+  @IsString()
+  name: string;
+  @IsString()
+  description: string;
+  @IsString()
+  image: string;
+  @IsNumber()
+  price: number;
+  @IsNumber()
+  quantity: number;
+}
+
 export class CreateOrderDto {
   @ValidateNested()
   @Type(() => UserDto)
@@ -20,6 +40,6 @@ export class CreateOrderDto {
   @IsNumber()
   total: number;
   @ValidateNested({ each: true })
-  @Type(() => ProductDto)
-  products: ProductDto[];
+  @Type(() => CreateProductDto)
+  products: CreateProductDto[];
 }

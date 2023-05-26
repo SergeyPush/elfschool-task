@@ -3,13 +3,12 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './user.entity';
-import { Product } from '../../shop/entities/product.entity';
+import { OrderProducts } from './order-products.entity';
 
 @Entity()
 export class Order {
@@ -27,7 +26,6 @@ export class Order {
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 
-  @ManyToMany(() => Product)
-  @JoinTable()
-  products: Product[];
+  @OneToMany(() => OrderProducts, (orderProducts) => orderProducts.order)
+  products: OrderProducts[];
 }

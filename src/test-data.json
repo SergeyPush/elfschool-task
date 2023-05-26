@@ -1,0 +1,49 @@
+{
+  "name": "kfc",
+  "displayName": "KFC",
+  "products": [
+    {
+      "name": "Salsa burger",
+      "image": "https://www.kfc-ukraine.com/admin/files/4180.png",
+      "description": "Hot salsa burger",
+      "price": 10.00
+    },
+    {
+      "name": "Box master spicy",
+      "image": "https://www.kfc-ukraine.com/admin/files/4186.png",
+      "description": "Hot box master",
+      "price": 12.00
+    },
+    {
+      "name": "Cheefburger",
+      "image": "https://www.kfc-ukraine.com/admin/files/4184.png",
+      "description": "Burger by chef",
+      "price": 15.00
+    }
+  ]
+},
+
+{
+  "name": "macdonalds",
+  "displayName": "Mc'Donalds",
+  "products": [
+    {
+      "name": "Big mac",
+      "image": "https://s7d1.scene7.com/is/image/mcdonalds/BIG_MAC:product-header-desktop?wid=829&hei=455&dpr=off",
+      "description": "Very big and tasty mac",
+      "price": 10.00
+    },
+    {
+      "name": "Double Cheesburger",
+      "image": "https://s7d1.scene7.com/is/image/mcdonalds/SdwchDoubleCheeseburger:product-header-desktop?wid=830&hei=458&dpr=off",
+      "description": "Tasty double cheesburger",
+      "price": 8.99
+    },
+    {
+      "name": "Big tasty",
+      "image": "https://s7d1.scene7.com/is/image/mcdonalds/BIG_TASTY:product-header-desktop?wid=829&hei=455&dpr=off",
+      "description": "Very big and tasty Big tasty",
+      "price": 15.00
+    }
+  ]
+}
