@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseBoolPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ShopProductDto } from './dto/shop-product.dto';
 import { ShopService } from './shop.service';
 
@@ -15,13 +24,14 @@ export class ShopController {
     return this.shopService.deleteShopById(id);
   }
 
-  @Get('/:id')
-  getShopById(@Param('id') id: number) {
-    return this.shopService.getShopById(id);
+  @Get('/')
+  getShopsWithProducts(@Query('products', ParseBoolPipe) products: boolean) {
+    return this.shopService.getShopsWithProducts(products);
   }
 
-  @Get('/')
-  getShopsWithProducts() {
-    return this.shopService.getShopsWithProducts();
+  @Get('/:id')
+  getShopById(@Param('id') id: number) {
+    console.log('getShopById');
+    return this.shopService.getShopById(id);
   }
 }

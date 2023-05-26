@@ -25,8 +25,10 @@ export class ShopService {
     return await this.shopRepository.save(shop);
   }
 
-  async getShopsWithProducts() {
-    return this.shopRepository.find({ relations: ['products'] });
+  async getShopsWithProducts(products = false) {
+    return this.shopRepository.find({
+      ...(products && { relations: ['products'] }),
+    });
   }
 
   async deleteShopById(shopId: number) {
