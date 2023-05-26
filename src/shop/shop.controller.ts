@@ -31,7 +31,6 @@ export class ShopController {
 
   @Get('/:id')
   getShopById(@Param('id') id: number) {
-    console.log('getShopById');
     return this.shopService.getShopById(id);
   }
 }
