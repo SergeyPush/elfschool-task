@@ -3,6 +3,8 @@ import { RootState } from './store.ts';
 
 const rootState = (state: RootState) => state;
 
+export const orderSelector = createSelector(rootState, (state) => state.cart);
+
 export const productsSelector = createSelector(
   rootState,
   (state) => state.cart.products,

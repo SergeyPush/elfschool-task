@@ -27,21 +27,21 @@ function CartItem({ product }: CartItemInterface) {
       </div>
 
       <div className="flex flex-row ml-auto ">
-        <button
-          className="px-3 py-0 text-lg text-blue-800 bg-blue-300 rounded-lg"
+        <div
+          className="px-3 py-0 text-lg text-blue-800 bg-blue-300 rounded-lg cursor-pointer"
           onClick={() => handleRemoveProducts()}
         >
           Minus
-        </button>
+        </div>
         <div className="flex justify-center items-center mx-3">
           <span className="block font-bold text-blue-900">{quantity}</span>
         </div>
-        <button
-          className="px-3 py-0 text-lg text-blue-800 bg-blue-300 rounded-lg"
+        <div
+          className="px-3 py-0 text-lg text-blue-800 bg-blue-300 rounded-lg cursor-pointer"
           onClick={() => handleAddProducts()}
         >
           Plus
-        </button>
+        </div>
       </div>
     </div>
   );

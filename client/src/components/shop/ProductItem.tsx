@@ -12,8 +12,6 @@ interface ProductItemInterface {
 function ProductItem({ product }: ProductItemInterface) {
   const dispatch = useAppDispatch();
   const hanleAddToCart = () => {
-    console.log(product);
-
     dispatch(addToCart(product));
   };
 

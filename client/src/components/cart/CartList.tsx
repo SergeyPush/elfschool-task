@@ -30,7 +30,10 @@ function CartList() {
         Total price: {total}
       </p>
 
-      <button className="px-8 py-2 mt-3 text-lg text-blue-800 bg-blue-300 block ml-auto rounded-lg">
+      <button
+        type="submit"
+        className="px-8 py-2 mt-3 text-lg text-blue-800 bg-blue-300 block ml-auto rounded-lg"
+      >
         Buy
       </button>
     </div>

@@ -1,13 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { CreateProduct, Product } from '../interfaces/shop.interface';
+import { Product } from '../interfaces/shop.interface';
+import { User } from '../interfaces/user.interface';
+import { Order } from '../interfaces/order.interface';
 
-interface CartSliceInterface {
-  user: never | null;
-  products: CreateProduct[];
-}
-
-const initialState: CartSliceInterface = {
-  user: null,
+const initialState: Order = {
+  user: {
+    name: '',
+    email: '',
+    address: '',
+    phone: '',
+  },
   products: [],
 };
 
@@ -45,8 +47,11 @@ export const cartSlice = createSlice({
         }
       }
     },
+    addUser: (state, actions: PayloadAction<User>) => {
+      state.user = { ...actions.payload };
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, addUser } = cartSlice.actions;
 export default cartSlice.reducer;

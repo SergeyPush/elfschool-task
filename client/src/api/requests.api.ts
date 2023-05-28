@@ -1,11 +1,5 @@
+import { Order } from '../interfaces/order.interface';
 import api from './api';
-
-// class AxiosErrorMessage extends Error {
-//   constructor(message: AxiosError) {
-//     super('Error');
-//     this.message = message.response?.data?.message;
-//   }
-// }
 
 export const getListOfShops = async () => {
   try {
@@ -19,6 +13,15 @@ export const getListOfShops = async () => {
 export const getShopWithListOfProducts = async (shopId: number) => {
   try {
     const response = await api.get(`/shop/${shopId}?products=true`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const placeOrder = async (payload: Order) => {
+  try {
+    const response = await api.post(`/order`, { ...payload });
     return response.data;
   } catch (error) {
     console.log(error);
