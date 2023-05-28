@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Orders from './pages/Orders';
-import ProductList from './components/ProductList';
+import ProductList from './components/shop/ProductList';
 
 function App() {
   return (

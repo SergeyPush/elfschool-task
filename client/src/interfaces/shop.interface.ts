@@ -12,3 +12,7 @@ export interface Product {
   image: string;
   price: number;
 }
+
+export interface CreateProduct extends Product {
+  quantity: number;
+}

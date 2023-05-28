@@ -1,4 +1,5 @@
-{
+[
+  {
   "name": "kfc",
   "displayName": "KFC",
   "products": [
@@ -22,7 +23,6 @@
     }
   ]
 },
-
 {
   "name": "macdonalds",
   "displayName": "Mc'Donalds",
@@ -31,7 +31,7 @@
       "name": "Big mac",
       "image": "https://s7d1.scene7.com/is/image/mcdonalds/BIG_MAC:product-header-desktop?wid=829&hei=455&dpr=off",
       "description": "Very big and tasty mac",
-      "price": 10.00
+      "price": 10.99
     },
     {
       "name": "Double Cheesburger",
@@ -43,7 +43,8 @@
       "name": "Big tasty",
       "image": "https://s7d1.scene7.com/is/image/mcdonalds/BIG_TASTY:product-header-desktop?wid=829&hei=455&dpr=off",
       "description": "Very big and tasty Big tasty",
-      "price": 15.00
+      "price": 15.99
     }
   ]
 }
+]

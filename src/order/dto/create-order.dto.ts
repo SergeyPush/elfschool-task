@@ -1,10 +1,4 @@
-import {
-  IsEmail,
-  IsNumber,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
+import { IsEmail, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class UserDto {
@@ -19,8 +13,6 @@ class UserDto {
 }
 
 class CreateProductDto {
-  @IsOptional()
-  id?: number;
   @IsString()
   name: string;
   @IsString()

@@ -17,7 +17,7 @@ export class Product {
   description: string;
   @Column({ type: 'text' })
   image: string;
-  @Column({ type: 'numeric' })
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
   @ManyToOne(() => Shop, (shop) => shop.products, {
     cascade: true,

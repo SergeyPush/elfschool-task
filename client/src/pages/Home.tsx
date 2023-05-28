@@ -1,6 +1,6 @@
-import ProductList from '../components/ProductList';
-import Sidebar from '../components/SideBar';
 import Wrapper from '../components/Wrapper';
+import ProductList from '../components/shop/ProductList';
+import Sidebar from '../components/shop/SideBar';
 
 function Home() {
   return (
