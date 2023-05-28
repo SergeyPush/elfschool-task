@@ -4,13 +4,11 @@ import { CreateProduct, Product } from '../interfaces/shop.interface';
 interface CartSliceInterface {
   user: never | null;
   products: CreateProduct[];
-  total: number;
 }
 
 const initialState: CartSliceInterface = {
   user: null,
   products: [],
-  total: 0,
 };
 
 export const cartSlice = createSlice({
@@ -22,13 +20,14 @@ export const cartSlice = createSlice({
         (product) => product.id === actions.payload.id,
       );
       if (!existingProduct) {
-        state.products.push({ ...actions.payload, quantity: 1 });
+        state.products.push({
+          ...actions.payload,
+          quantity: 1,
+        });
       }
       if (existingProduct) {
         existingProduct.quantity += 1;
       }
-
-      state.total = state.products.reduce((acc, item) => acc + item.price, 0);
     },
     removeFromCart: (state, actions: PayloadAction<Product>) => {
       const { id } = actions.payload;

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import {
+  productsLengthSelector,
   productsSelector,
   totalPriceSelector,
 } from '../../redux/cart-selector.select';
@@ -8,6 +9,17 @@ import CartItem from './CartItem';
 function CartList() {
   const total = useSelector(totalPriceSelector);
   const products = useSelector(productsSelector);
+  const length = useSelector(productsLengthSelector);
+
+  if (!length) {
+    return (
+      <div className="p-8 border rounded-lg w-2/3">
+        <p className="text-center text-2xl text-orange-700">
+          No items in cart, add some product on Shop page
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="p-8 border rounded-lg w-2/3">

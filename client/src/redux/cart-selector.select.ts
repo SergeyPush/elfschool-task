@@ -14,8 +14,10 @@ export const productsLengthSelector = createSelector(
 );
 
 export const totalPriceSelector = createSelector(productsSelector, (products) =>
-  products.reduce(
-    (acc, product) => acc + Number(product.price) * product.quantity,
-    0,
-  ),
+  products
+    .reduce(
+      (acc, product) => Number(acc) + Number(product.price) * product.quantity,
+      0,
+    )
+    .toFixed(2),
 );

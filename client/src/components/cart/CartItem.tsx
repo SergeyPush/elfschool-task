@@ -1,10 +1,20 @@
+import { useDispatch } from 'react-redux';
 import { CreateProduct } from '../../interfaces/shop.interface';
+import { addToCart, removeFromCart } from '../../redux/cart.slice';
 
 interface CartItemInterface {
   product: CreateProduct;
 }
 
 function CartItem({ product }: CartItemInterface) {
+  const dispatch = useDispatch();
+  const handleAddProducts = () => {
+    dispatch(addToCart(product));
+  };
+  const handleRemoveProducts = () => {
+    dispatch(removeFromCart(product));
+  };
+
   const { image, name, quantity, description } = product;
   return (
     <div className="flex flex-row h-28 border rounded-lg py-1 px-1 mb-4 items-center">
@@ -17,13 +27,19 @@ function CartItem({ product }: CartItemInterface) {
       </div>
 
       <div className="flex flex-row ml-auto ">
-        <button className="px-3 py-0 text-lg text-blue-800 bg-blue-300 rounded-lg">
+        <button
+          className="px-3 py-0 text-lg text-blue-800 bg-blue-300 rounded-lg"
+          onClick={() => handleRemoveProducts()}
+        >
           Minus
         </button>
         <div className="flex justify-center items-center mx-3">
           <span className="block font-bold text-blue-900">{quantity}</span>
         </div>
-        <button className="px-3 py-0 text-lg text-blue-800 bg-blue-300 rounded-lg">
+        <button
+          className="px-3 py-0 text-lg text-blue-800 bg-blue-300 rounded-lg"
+          onClick={() => handleAddProducts()}
+        >
           Plus
         </button>
       </div>
