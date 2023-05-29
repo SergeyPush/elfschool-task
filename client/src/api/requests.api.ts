@@ -1,4 +1,5 @@
-import { Order } from '../interfaces/order.interface';
+import { AxiosResponse } from 'axios';
+import { Order, OrderResponse } from '../interfaces/order.interface';
 import api from './api';
 
 export const getListOfShops = async () => {
@@ -21,7 +22,9 @@ export const getShopWithListOfProducts = async (shopId: number) => {
 
 export const placeOrder = async (payload: Order) => {
   try {
-    const response = await api.post(`/order`, { ...payload });
+    const response = await api.post<AxiosResponse<OrderResponse>>(`/order`, {
+      ...payload,
+    });
     return response.data;
   } catch (error) {
     console.log(error);

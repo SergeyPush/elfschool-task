@@ -6,10 +6,11 @@ import { addUser } from '../redux/cart.slice';
 import { placeOrder } from '../api/requests.api';
 import { productsSelector } from '../redux/cart-selector.select';
 import { User } from '../interfaces/user.interface';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
+import { OrderResponse } from '../interfaces/order.interface';
 
 function Cart() {
-  const [order, setOrder] = useState();
+  const [order, setOrder] = useState<OrderResponse>();
   const dispatch = useDispatch();
   const products = useSelector(productsSelector);
   const user: User = {
@@ -30,15 +31,20 @@ function Cart() {
     const data = e.currentTarget as HTMLFormElement;
 
     const response = await placeOrder({ user, products });
-    setOrder(response);
+    setOrder(response as SetStateAction<OrderResponse | undefined>);
     data.reset();
   };
 
   if (order) {
     return (
-      <div className="p-1 flex flex-row gap-8">
-        Your order is successfully placed. Your order ${order?.id}
-      </div>
+      <Wrapper>
+        <div className="p-10 border rounded-xl">
+          <p className="text-center text-2xl">
+            Your order is successfully placed. Your order{' '}
+            <span className="text-blue-600">#{order?.id}</span>
+          </p>
+        </div>
+      </Wrapper>
     );
   }
 

@@ -25,6 +25,7 @@ export const cartSlice = createSlice({
         state.products.push({
           ...actions.payload,
           quantity: 1,
+          price: Number(actions.payload.price),
         });
       }
       if (existingProduct) {
@@ -49,6 +50,9 @@ export const cartSlice = createSlice({
     },
     addUser: (state, actions: PayloadAction<User>) => {
       state.user = { ...actions.payload };
+    },
+    clearCart: (state) => {
+      state.products = [];
     },
   },
 });
