@@ -1,6 +1,5 @@
 # Elfschool task
 
-
 ## Description
 
 For the app it is used: 
