@@ -29,8 +29,6 @@ export class CreateOrderDto {
   @ValidateNested()
   @Type(() => UserDto)
   user: UserDto;
-  @IsNumber()
-  total: number;
   @ValidateNested({ each: true })
   @Type(() => CreateProductDto)
   products: CreateProductDto[];

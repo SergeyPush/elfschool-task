@@ -21,7 +21,6 @@ export class OrderService {
     const user = this.userRepository.create(createOrderDto.user);
     const order = this.orderRepository.create({
       user: user,
-      total: createOrderDto.total,
     });
 
     const newProducts = createOrderDto.products.map((product) =>

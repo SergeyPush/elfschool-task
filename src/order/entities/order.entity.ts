@@ -1,5 +1,4 @@
 import {
-  Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
@@ -16,8 +15,6 @@ export class Order {
   id?: number;
   @CreateDateColumn()
   createdAt: Date;
-  @Column({ type: 'numeric' })
-  total: number;
 
   @ManyToOne(() => User, (user) => user.orders, {
     cascade: true,
