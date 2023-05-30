@@ -20,3 +20,8 @@ $ docker compose up
 ```
 
 Then open link [Frontend](http://localhost:3001)
+
+## Deployment
+
+Deployed app: [Vercel](https://elifschool-task-afoqq53e8-sergeypush.vercel.app/)
+
