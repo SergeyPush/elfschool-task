@@ -1,18 +1,18 @@
 import { Product } from '../../interfaces/shop.interface';
-import { addToCart } from '../../redux/cart.slice';
+import { addToCart, selectShop } from '../../redux/cart.slice';
 
 import { useAppDispatch } from '../../redux/store';
 
 interface ProductItemInterface {
   product: Product;
+  shopName: string;
 }
 
-// const count = useAppSelector((state) => state.counter.value);
-
-function ProductItem({ product }: ProductItemInterface) {
+function ProductItem({ product, shopName }: ProductItemInterface) {
   const dispatch = useAppDispatch();
   const hanleAddToCart = () => {
     dispatch(addToCart(product));
+    dispatch(selectShop(shopName));
   };
 
   return (

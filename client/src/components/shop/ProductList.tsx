@@ -29,7 +29,7 @@ function ProductList() {
       <div className="grid grid-cols-3 gap-8">
         {!loading && shop?.products ? (
           shop?.products.map((product, index) => (
-            <ProductItem product={product} key={index} />
+            <ProductItem product={product} shopName={shop.name} key={index} />
           ))
         ) : (
           <p className="text-xl">Select shop to see products</p>

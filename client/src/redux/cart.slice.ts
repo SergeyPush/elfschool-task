@@ -3,7 +3,7 @@ import { Product } from '../interfaces/shop.interface';
 import { User } from '../interfaces/user.interface';
 import { Order } from '../interfaces/order.interface';
 
-const initialState: Order = {
+const initialState: Order & { shopName: string } = {
   user: {
     name: '',
     email: '',
@@ -11,6 +11,7 @@ const initialState: Order = {
     phone: '',
   },
   products: [],
+  shopName: '',
 };
 
 export const cartSlice = createSlice({
@@ -47,6 +48,10 @@ export const cartSlice = createSlice({
           );
         }
       }
+      console.log(state.products.length);
+      if (!state.products.length) {
+        state.shopName = '';
+      }
     },
     addUser: (state, actions: PayloadAction<User>) => {
       state.user = { ...actions.payload };
@@ -54,8 +59,15 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.products = [];
     },
+    selectShop: (state, actions: PayloadAction<string>) => {
+      state.shopName = actions.payload;
+    },
+    removeShop: (state) => {
+      state.shopName = '';
+    },
   },
 });
 
-export const { addToCart, removeFromCart, addUser } = cartSlice.actions;
+export const { addToCart, removeFromCart, addUser, selectShop, removeShop } =
+  cartSlice.actions;
 export default cartSlice.reducer;

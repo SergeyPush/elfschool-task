@@ -1,18 +1,23 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from './store.ts';
 
-const rootState = (state: RootState) => state;
+const cartState = (state: RootState) => state.cart;
 
-export const orderSelector = createSelector(rootState, (state) => state.cart);
+export const orderSelector = createSelector(cartState, (state) => state);
 
 export const productsSelector = createSelector(
-  rootState,
-  (state) => state.cart.products,
+  cartState,
+  (state) => state.products,
 );
 
 export const productsLengthSelector = createSelector(
   productsSelector,
   (state) => state.reduce((acc, product) => acc + product.quantity, 0),
+);
+
+export const activeShopSelector = createSelector(
+  cartState,
+  (state) => state.shopName,
 );
 
 export const totalPriceSelector = createSelector(productsSelector, (products) =>
