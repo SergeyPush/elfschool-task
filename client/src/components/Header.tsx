@@ -23,10 +23,19 @@ function Header() {
         <NavLink
           to={'/cart'}
           className={({ isActive }) =>
-            `text-2xl px-3 ${isActive ? ' text-blue-700' : ''}`
+            `text-2xl px-3 border-r ${isActive ? ' text-blue-700' : ''}`
           }
         >
           Cart{length ? `(${length})` : null}
+        </NavLink>
+
+        <NavLink
+          to={'/orders'}
+          className={({ isActive }) =>
+            `text-2xl px-3 ${isActive ? ' text-blue-700' : ''}`
+          }
+        >
+          My orders
         </NavLink>
       </div>
     </div>

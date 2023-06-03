@@ -48,7 +48,6 @@ export const cartSlice = createSlice({
           );
         }
       }
-      console.log(state.products.length);
       if (!state.products.length) {
         state.shopName = '';
       }
@@ -58,6 +57,8 @@ export const cartSlice = createSlice({
     },
     clearCart: (state) => {
       state.products = [];
+      state.user = initialState.user
+      state.shopName = ''
     },
     selectShop: (state, actions: PayloadAction<string>) => {
       state.shopName = actions.payload;
@@ -68,6 +69,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, addUser, selectShop, removeShop } =
+export const { addToCart, removeFromCart, addUser, selectShop, clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;

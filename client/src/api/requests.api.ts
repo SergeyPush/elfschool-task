@@ -30,3 +30,14 @@ export const placeOrder = async (payload: Order) => {
     console.log(error);
   }
 };
+
+export const getOrders = async (email: string) => {
+  try {
+    const response = await api.get<AxiosResponse<OrderResponse>>(
+      `/order?email=${email}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

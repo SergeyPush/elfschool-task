@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Wrapper from '../components/Wrapper';
 import CartList from '../components/cart/CartList';
 import CartUserForm from '../components/cart/CartUserForm';
-import { addUser } from '../redux/cart.slice';
+import { addUser, clearCart } from "../redux/cart.slice";
 import { placeOrder } from '../api/requests.api';
 import { productsSelector } from '../redux/cart-selector.select';
 import { User } from '../interfaces/user.interface';
@@ -33,6 +33,7 @@ function Cart() {
     const response = await placeOrder({ user, products });
     setOrder(response as SetStateAction<OrderResponse | undefined>);
     data.reset();
+    dispatch(clearCart())
   };
 
   if (order) {
