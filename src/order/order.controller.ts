@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 
@@ -19,5 +27,10 @@ export class OrderController {
   @Get('/')
   getAllOrdersOfUser(@Query('email') email: string) {
     return this.orderService.getAllOrdersOfUser(email);
+  }
+
+  @Delete('/user/:id')
+  deleteUserById(@Param('id') id: number) {
+    return this.orderService.deleteUserById(id);
   }
 }

@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { Like, Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Product } from '../shop/entities/product.entity';
@@ -27,17 +27,17 @@ export class OrderService {
       this.orderProductsRepository.create({
         name: product.name,
         description: product.description,
-        price: +product.price,
+        price: product.price,
         image: product.image,
         quantity: product.quantity,
       }),
     );
 
     order.products = newProducts;
-    //
+
     await this.orderProductsRepository.save(newProducts);
     await this.orderRepository.save(order);
-    await this.userRepository.save(user);
+    // await this.userRepository.save(user);
     return order;
   }
 
@@ -50,8 +50,17 @@ export class OrderService {
 
   async getAllOrdersOfUser(userEmail: string) {
     return this.userRepository.find({
-      where: { email: Like(`%${userEmail}%`) },
+      where: { email: ILike(`%${userEmail}%`) },
       relations: ['orders', 'orders.products'],
     });
+  }
+
+  async deleteUserById(id: number) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+    if (user) {
+      await this.userRepository.remove(user);
+      return { message: user };
+    }
+    throw new NotFoundException('User not found');
   }
 }

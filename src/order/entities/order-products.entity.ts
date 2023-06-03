@@ -22,7 +22,10 @@ export class OrderProducts {
   @Column()
   quantity: number;
 
-  @ManyToOne(() => Order, (order) => order.products)
+  @ManyToOne(() => Order, (order) => order.products, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'order_id', referencedColumnName: 'id' })
   order: Order;
 }
