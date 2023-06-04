@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { Order, OrderResponse } from '../interfaces/order.interface';
 import api from './api';
+import { User } from '../interfaces/user.interface';
 
 export const getListOfShops = async () => {
   try {
@@ -33,7 +34,7 @@ export const placeOrder = async (payload: Order) => {
 
 export const getOrders = async (email: string) => {
   try {
-    const response = await api.get<AxiosResponse<OrderResponse>>(
+    const response = await api.get<AxiosResponse<User[]>>(
       `/order?email=${email}`,
     );
     return response.data;
