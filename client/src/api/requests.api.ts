@@ -2,23 +2,18 @@ import { AxiosResponse } from 'axios';
 import { Order, OrderResponse } from '../interfaces/order.interface';
 import api from './api';
 import { User } from '../interfaces/user.interface';
+import { Shop } from '../interfaces/shop.interface';
 
 export const getListOfShops = async () => {
-  try {
-    const response = await api.get('/shop');
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await api.get('/shop');
+  return response.data;
 };
 
 export const getShopWithListOfProducts = async (shopId: number) => {
-  try {
-    const response = await api.get(`/shop/${shopId}?products=true`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const response: AxiosResponse<Shop> = await api.get(
+    `/shop/${shopId}?products=true`,
+  );
+  return response.data;
 };
 
 export const placeOrder = async (payload: Order) => {
@@ -33,12 +28,9 @@ export const placeOrder = async (payload: Order) => {
 };
 
 export const getOrders = async (email: string) => {
-  try {
-    const response = await api.get<AxiosResponse<User[]>>(
-      `/order?email=${email}`,
-    );
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  if (!email) return null;
+  const response: AxiosResponse<User[]> = await api.get(
+    `/order?email=${email}`,
+  );
+  return response.data;
 };

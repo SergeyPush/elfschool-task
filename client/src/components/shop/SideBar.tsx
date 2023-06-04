@@ -1,18 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getListOfShops } from '../../api/requests.api';
 import ShopList from './ShopList';
+import { useQuery } from 'react-query';
+import { queryClient } from '../../main';
 
 function Sidebar() {
-  const [shops, setShops] = useState([]);
+  const { data: shops, isLoading } = useQuery('shops', getListOfShops);
   const getShops = async () => {
-    const resp = await getListOfShops();
-    setShops(resp);
+    queryClient.prefetchQuery('shops', getListOfShops);
   };
 
   useEffect(() => {
     getShops();
   }, []);
 
+  if (isLoading) {
+    return <div className="w-1/5 border rounded-lg p-2">Loading...</div>;
+  }
   return (
     <div className="w-1/5 border rounded-lg p-2">
       {shops && <ShopList shops={shops} />}

@@ -1,33 +1,26 @@
-import { useEffect, useState } from 'react';
 import { getShopWithListOfProducts } from '../../api/requests.api';
 import { useParams } from 'react-router-dom';
-
-import { Shop } from '../../interfaces/shop.interface';
 import ProductItem from './ProductItem';
+import { useQuery } from 'react-query';
 
 function ProductList() {
   const { id } = useParams();
-  const [shop, setShop] = useState<Shop>();
-  const [loading, setLoading] = useState(false);
 
-  const getProducts = async () => {
-    if (id) {
-      const resp = await getShopWithListOfProducts(parseInt(id));
-      setShop(resp);
-    }
-  };
+  const enabled = !!parseInt(id!);
+  const { data: shop, isLoading } = useQuery(
+    ['getProducts', id],
+    () => getShopWithListOfProducts(parseInt(id!)),
+    { enabled },
+  );
 
-  useEffect(() => {
-    setLoading(true);
-    getProducts();
-    setLoading(false);
-  }, [id]);
+  if (isLoading) {
+    <p className="text-xl w-4/5 border rounded-lg p-4">Loading...</p>;
+  }
 
   return (
     <div className="w-4/5 border rounded-lg p-4">
-      {loading && <div>Loading...</div>}
       <div className="grid grid-cols-3 gap-8">
-        {!loading && shop?.products ? (
+        {shop?.products ? (
           shop?.products.map((product, index) => (
             <ProductItem product={product} shopName={shop.name} key={index} />
           ))

@@ -2,17 +2,24 @@ import { useState } from 'react';
 import Wrapper from '../components/Wrapper';
 import { getOrders } from '../api/requests.api';
 import OrderList from '../components/order/OrderList';
-import { User } from '../interfaces/user.interface';
+import { useQuery } from 'react-query';
+import { queryClient } from '../main';
 
 function Orders() {
   const [email, setEmail] = useState<string>('');
-  const [users, setUsers] = useState<User[]>([]);
+
+  const { data: users, isLoading } = useQuery(
+    ['searchOrders', email],
+    () => getOrders(email),
+    { enabled: false },
+  );
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const resp = await getOrders(email);
-    if (resp) {
-      setUsers(resp as never);
+    if (email.length > 0) {
+      queryClient.prefetchQuery(['searchOrders', email], () =>
+        getOrders(email),
+      );
     }
   };
 
@@ -39,7 +46,8 @@ function Orders() {
         </div>
       </form>
       <div className="w-3/5 mx-auto">
-        <OrderList users={users} />
+        {isLoading && <p>Loading...</p>}
+        {users && <OrderList users={users} />}
       </div>
     </Wrapper>
   );
